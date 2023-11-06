@@ -38,9 +38,12 @@ class Simulator(System):
     
     Bruker mindre tidsintervaller får at regulatoren kan fungere, og fremme mer realistiske verdier
     """
-    #sikre idioti
-    tids_intervall = abs(tids_intervall)
+    #sikre idioti, negativ intervall og evig tidsimulering
+    if tids_intervall < 1: tids_intervall = 1
     total_tid = abs(total_tid)
+    if total_tid == float('inf'):
+      print('Kan ikke bruke `infinity`, returner tidlig')
+      return
     # "intern" tid som kun brukes for å stoppe while løkken etter den totale tiden er gått
     simulerings_tid = 0
     while simulerings_tid < total_tid:

@@ -26,8 +26,13 @@ class GrafTegner(object):
     plt.figure(self.navn)
     plt.plot([x/60**2 for x in self.x_verdier], self.y_verdier)
     if self.y2_verdier != []:
-      plt.plot([x/60**2 for x in self.x_verdier], self.y2_verdier, linestyle="dashed")
+      plt.plot([x/60**2 for x in self.x_verdier], self.y2_verdier, linestyle="dashed", label="Ønsket temperatur")
     plt.grid()
+    plt.xlabel('x - tid [time]')
+    if self.navn == 'Effekt':
+      plt.ylabel('y - effekt [watt]')
+    else:
+      plt.ylabel('y - temperatur [celcius]')
   
   def reset_data(self):
     self.x_verdier = []
